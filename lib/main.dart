@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_lab/pages/display_page.dart';
+import 'package:flutter_lab/pages/gallery_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -174,6 +175,9 @@ class _HomeState extends State<Home> {
                   break;
                 case "Gallery":
                   debugPrint("Popup Gallery");
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => GalleryPage()),
+                  );
                   break;
                 case "Help":
                   debugPrint("Popup Help");
