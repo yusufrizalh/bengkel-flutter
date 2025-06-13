@@ -13,16 +13,38 @@ class _DisplayPageState extends State<DisplayPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Display Page'),
-        centerTitle: true,
-        backgroundColor: Colors.deepPurple,
-      ),
-
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[Text('Display Page')],
+      body: NestedScrollView(
+        headerSliverBuilder: (context, innerBoxIsScrolled) {
+          return <Widget>[
+            SliverAppBar(
+              title: const Text('Display Page'),
+              centerTitle: true,
+              expandedHeight: 200,
+              floating: true,
+              snap: true,
+              pinned: true,
+              flexibleSpace: FlexibleSpaceBar(
+                background: Image.asset(
+                  'assets/images/sliver_header_bg.jpg',
+                  fit: BoxFit.cover,
+                ),
+              ),
+              actions: [
+                IconButton(
+                  icon: const Icon(Icons.person),
+                  onPressed: () {
+                    // Handle person action
+                  },
+                ),
+              ],
+            ),
+          ];
+        },
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[],
+          ),
         ),
       ),
     );
