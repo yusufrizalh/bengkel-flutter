@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:flutter_lab/pages/Dashboard_page.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 
 class LoginPage extends StatefulWidget {
@@ -83,6 +84,12 @@ class _LoginPageState extends State<LoginPage> {
                         _formKey.currentState?.validate();
                         debugPrint(
                           _formKey.currentState?.instantValue.toString(),
+                        );
+
+                        Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(
+                            builder: (context) => DashboardPage(),
+                          ),
                         );
                       },
                       child: const Text(
