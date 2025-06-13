@@ -40,10 +40,51 @@ class _DisplayPageState extends State<DisplayPage> {
             ),
           ];
         },
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[],
+        body: SafeArea(
+          child: SizedBox.expand(
+            child: GridView.builder(
+              scrollDirection: Axis.vertical,
+              itemCount: 50,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 4,
+                crossAxisSpacing: 4,
+                mainAxisSpacing: 4,
+                childAspectRatio: 1.0,
+              ),
+              itemBuilder: (context, index) {
+                return Card(
+                  color: Colors.grey.shade300,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  margin: const EdgeInsets.all(4),
+                  elevation: 4,
+                  shadowColor: Colors.black,
+                  child: Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Image(
+                          image: NetworkImage(
+                            "https://picsum.photos/seed/$index/200",
+                          ),
+                          fit: BoxFit.fill,
+                        ),
+                        Expanded(
+                          child: Text(
+                            'Item $index',
+                            style: const TextStyle(
+                              color: Colors.black,
+                              fontSize: 18,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            ),
           ),
         ),
       ),
