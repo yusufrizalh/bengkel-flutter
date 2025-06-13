@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_lab/pages/display_page.dart';
 import 'package:flutter_lab/pages/gallery_page.dart';
+import 'package:flutter_lab/pages/login_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -49,11 +50,16 @@ class _HomeState extends State<Home> {
           PopupMenuButton(
             tooltip: "Open popup",
             itemBuilder: (context) {
-              return {"Contact", "Messages", "Settings", "Gallery", "Help"}.map(
-                (String popup) {
-                  return PopupMenuItem(value: popup, child: Text(popup));
-                },
-              ).toList();
+              return {
+                "Contact",
+                "Messages",
+                "Settings",
+                "Gallery",
+                "Help",
+                "Login",
+              }.map((String popup) {
+                return PopupMenuItem(value: popup, child: Text(popup));
+              }).toList();
             },
             onSelected: (String popup) {
               switch (popup) {
@@ -181,6 +187,12 @@ class _HomeState extends State<Home> {
                   break;
                 case "Help":
                   debugPrint("Popup Help");
+                  break;
+                case "Login":
+                  Navigator.of(
+                    context,
+                  ).push(MaterialPageRoute(builder: (context) => LoginPage()));
+                  debugPrint("Popup Login");
                   break;
               }
             },
