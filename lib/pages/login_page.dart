@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:flutter_lab/pages/Dashboard_page.dart';
+import 'package:flutter_lab/pages/dashboard_page.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 
 class LoginPage extends StatefulWidget {
@@ -28,7 +28,7 @@ class _LoginPageState extends State<LoginPage> {
             margin: EdgeInsets.all(12),
             padding: EdgeInsets.all(4),
             width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.width * 0.6,
+            height: MediaQuery.of(context).size.width * 0.8,
             child: Card(
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),

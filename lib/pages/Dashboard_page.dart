@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_lab/main.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
@@ -111,7 +112,11 @@ class _DashboardPageState extends State<DashboardPage> {
                     "Logout",
                     style: TextStyle(color: Colors.white, fontSize: 16),
                   ),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(builder: (context) => MyApp()),
+                    );
+                  },
                 ),
               ],
             ),
