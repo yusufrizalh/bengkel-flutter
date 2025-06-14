@@ -66,9 +66,13 @@ class _DashboardPageState extends State<DashboardPage> {
               onTap: () {},
             ),
             ListTile(
-              leading: Icon(Icons.book, size: 26, color: Colors.white),
+              leading: Icon(
+                Icons.production_quantity_limits,
+                size: 26,
+                color: Colors.white,
+              ),
               title: Text(
-                "Books",
+                "Products",
                 style: TextStyle(color: Colors.white, fontSize: 16),
               ),
               onTap: () {},
