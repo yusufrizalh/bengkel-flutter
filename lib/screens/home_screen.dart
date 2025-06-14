@@ -104,7 +104,7 @@ class HomeScreen extends StatelessWidget {
                   );
                 },
                 child: Card(
-                  color: Colors.grey.shade300,
+                  color: Colors.green,
                   elevation: 12,
                   shadowColor: Colors.black,
                   shape: RoundedRectangleBorder(
@@ -124,28 +124,30 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ),
                       SizedBox(width: 32),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          if (authService.user != null) ...[
-                            Text(
-                              'Welcome, ${authService.user!.user_name}!',
-                              style: TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black,
+                      Expanded(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            if (authService.user != null) ...[
+                              Text(
+                                'Welcome, ${authService.user!.user_name}!',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
                               ),
-                            ),
-                            Text(
-                              'Email: ${authService.user!.user_email}',
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black,
+                              Text(
+                                'Email: ${authService.user!.user_email}',
+                                style: TextStyle(
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
                               ),
-                            ),
+                            ],
                           ],
-                        ],
+                        ),
                       ),
                     ],
                   ),
