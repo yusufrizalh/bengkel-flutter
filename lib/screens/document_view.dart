@@ -33,8 +33,9 @@ class DocumentView extends StatelessWidget {
             if (document.fileType == 'image')
               Image.network(
                 document.filePath,
-                width: double.infinity,
-                fit: BoxFit.contain,
+                width: MediaQuery.of(context).size.width * 0.8,
+                height: MediaQuery.of(context).size.width * 0.4,
+                fit: BoxFit.cover,
               )
             else
               ElevatedButton(

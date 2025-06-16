@@ -1,12 +1,13 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 import 'package:flutter_lab/models/document_model.dart';
 import 'package:flutter_lab/screens/document_form.dart';
 import 'package:flutter_lab/screens/document_view.dart';
-
 import '../services/api_service.dart';
 
 class DocumentList extends StatefulWidget {
-  const DocumentList({Key? key}) : super(key: key);
+  const DocumentList({super.key});
 
   @override
   _DocumentListState createState() => _DocumentListState();
@@ -57,12 +58,57 @@ class _DocumentListState extends State<DocumentList> {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
-            return Center(child: Text('Error: ${snapshot.error}'));
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Icon(Icons.error_outline, size: 48, color: Colors.red),
+                  const SizedBox(height: 16),
+                  Text(
+                    'Error loading documents',
+                    style: Theme.of(context).textTheme.headlineSmall,
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    snapshot.error.toString(),
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
+                  const SizedBox(height: 16),
+                  ElevatedButton(
+                    onPressed: _refreshDocuments,
+                    child: const Text('Retry'),
+                  ),
+                ],
+              ),
+            );
           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return const Center(child: Text('No documents found'));
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.folder_open, size: 48, color: Colors.grey),
+                  SizedBox(height: 16),
+                  Text('No documents found'),
+                  SizedBox(height: 16),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              DocumentForm(onSubmitted: _refreshDocuments),
+                        ),
+                      );
+                    },
+                    child: Text('Upload First Document'),
+                  ),
+                ],
+              ),
+            );
           }
-
           return ListView.builder(
+            scrollDirection: Axis.vertical,
             itemCount: snapshot.data!.length,
             itemBuilder: (context, index) {
               Document document = snapshot.data![index];

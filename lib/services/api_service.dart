@@ -46,9 +46,15 @@ class ApiService {
 
       var response = await request.send();
       var responseData = await response.stream.bytesToString();
+      final responseJson = json.decode(responseData);
 
       if (response.statusCode == 200) {
-        return Document.fromJson(json.decode(responseData));
+        // return Document.fromJson(json.decode(responseData));
+        if (responseJson is Map<String, dynamic>) {
+          return Document.fromJson(responseJson);
+        } else {
+          throw Exception('Invalid response format');
+        }
       } else {
         throw Exception(
           'Failed to upload document: ${json.decode(responseData)['message']}',
@@ -64,10 +70,20 @@ class ApiService {
     final response = await http.get(Uri.parse('$baseUrl/documents.php'));
 
     if (response.statusCode == 200) {
-      List<dynamic> body = json.decode(response.body);
-      return body.map((dynamic item) => Document.fromJson(item)).toList();
+      final dynamic responseBody = json.decode(response.body);
+      if (responseBody is List) {
+        return responseBody
+            .map((dynamic item) => Document.fromJson(item))
+            .toList();
+      } else if (responseBody is Map && responseBody.containsKey('records')) {
+        return (responseBody['records'] as List)
+            .map((dynamic item) => Document.fromJson(item))
+            .toList();
+      } else {
+        throw Exception('Unexpected response format');
+      }
     } else {
-      throw Exception('Failed to load documents');
+      throw Exception('Failed to load documents: ${response.statusCode}');
     }
   }
 

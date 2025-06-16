@@ -16,13 +16,20 @@ class Document {
   });
 
   factory Document.fromJson(Map<String, dynamic> json) {
+    if (json['id'] == null ||
+        json['title'] == null ||
+        json['file_path'] == null) {
+      throw FormatException('Invalid document data: missing required fields');
+    }
     return Document(
-      id: json['id'],
-      title: json['title'],
-      description: json['description'],
-      filePath: json['file_path'],
-      fileType: json['file_type'],
-      createdAt: DateTime.parse(json['created_at']),
+      id: int.parse(json['id'].toString()),
+      title: json['title'] as String,
+      description: json['description'] as String? ?? '',
+      filePath: json['file_path'] as String,
+      fileType: json['file_type'] as String? ?? 'unknown',
+      createdAt: DateTime.parse(
+        json['created_at'] as String? ?? DateTime.now().toIso8601String(),
+      ),
     );
   }
 
