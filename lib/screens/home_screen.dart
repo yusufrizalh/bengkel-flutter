@@ -18,6 +18,7 @@ class HomeScreen extends StatelessWidget {
         title: Text('Home Screen'),
         centerTitle: true,
         backgroundColor: Color.fromRGBO(0, 100, 0, 1),
+        leading: Icon(Icons.home),
         actions: [
           // IconButton(
           //   icon: Icon(Icons.logout),
@@ -29,7 +30,7 @@ class HomeScreen extends StatelessWidget {
           PopupMenuButton(
             tooltip: "Open popup",
             itemBuilder: (context) {
-              return {"Profile", "Logout"}.map((String popup) {
+              return {"Profile", "Products", "Logout"}.map((String popup) {
                 return PopupMenuItem(value: popup, child: Text(popup));
               }).toList();
             },
@@ -37,6 +38,10 @@ class HomeScreen extends StatelessWidget {
               switch (popup) {
                 case "Profile":
                   debugPrint("Popup Profile");
+                  break;
+                case "Documents":
+                  debugPrint("Popup Documents");
+                  Navigator.of(context).pushNamed('/documents');
                   break;
                 case "Logout":
                   debugPrint("Popup Logout");
@@ -123,31 +128,29 @@ class HomeScreen extends StatelessWidget {
                           color: Colors.white,
                         ),
                       ),
-                      SizedBox(width: 32),
-                      Expanded(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            if (authService.user != null) ...[
-                              Text(
-                                'Welcome, ${authService.user!.user_name}!',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                ),
+                      SizedBox(width: 20),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          if (authService.user != null) ...[
+                            Text(
+                              'Welcome, ${authService.user!.user_name}!',
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
                               ),
-                              Text(
-                                'Email: ${authService.user!.user_email}',
-                                style: TextStyle(
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                ),
+                            ),
+                            Text(
+                              'Email: ${authService.user!.user_email}',
+                              style: TextStyle(
+                                fontSize: 13,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
                               ),
-                            ],
+                            ),
                           ],
-                        ),
+                        ],
                       ),
                     ],
                   ),

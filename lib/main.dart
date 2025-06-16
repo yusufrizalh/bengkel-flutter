@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_lab/pages/display_page.dart';
 import 'package:flutter_lab/pages/gallery_page.dart';
 import 'package:flutter_lab/pages/login_page.dart';
+import 'package:flutter_lab/screens/document_list.dart';
 import 'package:flutter_lab/screens/home_screen.dart';
 import 'package:flutter_lab/screens/login_screen.dart';
 import 'package:flutter_lab/screens/register_screen.dart';
@@ -29,11 +30,12 @@ class MyApp extends StatelessWidget {
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         title: "Flutter Lab",
-        home: LoginScreen(),
+        home: DocumentList(), //* LoginScreen() or Home()
         routes: {
           '/login': (context) => LoginScreen(),
           '/register': (context) => RegisterScreen(),
           '/home': (context) => HomeScreen(),
+          '/documents': (context) => DocumentList(),
         },
       ),
     );
