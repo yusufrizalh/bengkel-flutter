@@ -30,7 +30,7 @@ class HomeScreen extends StatelessWidget {
           PopupMenuButton(
             tooltip: "Open popup",
             itemBuilder: (context) {
-              return {"Profile", "Products", "Logout"}.map((String popup) {
+              return {"Profile", "Documents", "Logout"}.map((String popup) {
                 return PopupMenuItem(value: popup, child: Text(popup));
               }).toList();
             },

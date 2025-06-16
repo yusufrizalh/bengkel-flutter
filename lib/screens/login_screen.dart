@@ -63,14 +63,14 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Column(
             children: [
               TextFormField(
-                controller: _emailController,
+                controller: _emailController..text = 'yrizal@email.com',
                 decoration: InputDecoration(labelText: 'Email'),
                 keyboardType: TextInputType.emailAddress,
                 validator: Validators.validateEmail,
               ),
               SizedBox(height: 16),
               TextFormField(
-                controller: _passwordController,
+                controller: _passwordController..text = 'Password',
                 decoration: InputDecoration(labelText: 'Password'),
                 obscureText: true,
                 validator: Validators.validatePassword,

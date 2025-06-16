@@ -13,7 +13,7 @@ class DocumentView extends StatelessWidget {
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
               document.title,

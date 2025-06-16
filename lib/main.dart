@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         title: "Flutter Lab",
-        home: DocumentList(), //* LoginScreen() or Home()
+        home: LoginScreen(), //* LoginScreen() or Home()
         routes: {
           '/login': (context) => LoginScreen(),
           '/register': (context) => RegisterScreen(),
