@@ -3,9 +3,9 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
-        android:label="FlutLab"
+        android:label="Flut-Docs"
         android:name="${applicationName}"
-        android:icon="@drawable/flutlabicon">
+        android:icon="@drawable/flut_docs_logo_1">
         <activity
             android:name=".MainActivity"
             android:exported="true"
